@@ -1,40 +1,29 @@
-import { BedrockChunk, PCChunk } from "prismarine-chunk";
-import dataLoader from 'minecraft-data'
-import chunkLoader from 'prismarine-chunk'
-import registryLoader from 'prismarine-registry'
-const loader = require('prismarine-block')
-
-export class DataRegistries {
-
-	minecraft
-	chunk
-	block
-
-	constructor(version) {
-		this.minecraft = dataLoader(version)
-
-		let registry = registryLoader(version)
-
-		// any hack: (typeof BedrockChunk | typeof PCChunk)
-		/**
-		 * @type {any}
-		 */
-		let chunkType = chunkLoader(version)
-
-		if (typeof chunkType == typeof PCChunk) {
-			throw Error("only accept bedrock chunk type")
-		}
-
-		let bedrockChunkType = chunkType
-		this.chunk = bedrockChunkType
-
-		this.block = loader(registry)
-	}
+"use strict";
+exports.__esModule = true;
+exports.get = exports.latestRegistries = exports.DataRegistries = void 0;
+var prismarine_chunk_1 = require("prismarine-chunk");
+var minecraft_data_1 = require("minecraft-data");
+var prismarine_chunk_2 = require("prismarine-chunk");
+var prismarine_registry_1 = require("prismarine-registry");
+var loader = require('prismarine-block');
+var DataRegistries = /** @class */ (function () {
+    function DataRegistries(version) {
+        this.minecraft = (0, minecraft_data_1["default"])(version);
+        var registry = (0, prismarine_registry_1["default"])(version);
+        // any hack: (typeof BedrockChunk | typeof PCChunk)
+        var chunkType = (0, prismarine_chunk_2["default"])(version);
+        if (typeof chunkType == typeof prismarine_chunk_1.PCChunk) {
+            throw Error("only accept bedrock chunk type");
+        }
+        var bedrockChunkType = chunkType;
+        this.chunk = bedrockChunkType;
+        this.block = loader(registry);
+    }
+    return DataRegistries;
+}());
+exports.DataRegistries = DataRegistries;
+exports.latestRegistries = new DataRegistries("bedrock_1.19.60");
+function get(version) {
+    return new DataRegistries(version);
 }
-
-
-export let latestRegistries = new DataRegistries("bedrock_1.19.60")
-
-export function get(version) {
-	return new DataRegistries(version)
-}
+exports.get = get;
