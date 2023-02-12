@@ -1,30 +1,31 @@
 import { BedrockChunk, PCChunk } from "prismarine-chunk";
-import { IndexedData } from 'minecraft-data'
 import dataLoader from 'minecraft-data'
 import chunkLoader from 'prismarine-chunk'
 import registryLoader from 'prismarine-registry'
-import { Block } from 'prismarine-block'
 const loader = require('prismarine-block')
 
 export class DataRegistries {
 
-	minecraft: IndexedData
-	chunk: typeof BedrockChunk
-	block: typeof Block
+	minecraft
+	chunk
+	block
 
-	constructor(version: string) {
+	constructor(version) {
 		this.minecraft = dataLoader(version)
 
 		let registry = registryLoader(version)
 
 		// any hack: (typeof BedrockChunk | typeof PCChunk)
-		let chunkType: (any) = chunkLoader(version)
+		/**
+		 * @type {any}
+		 */
+		let chunkType = chunkLoader(version)
 
 		if (typeof chunkType == typeof PCChunk) {
 			throw Error("only accept bedrock chunk type")
 		}
 
-		let bedrockChunkType: typeof BedrockChunk = chunkType
+		let bedrockChunkType = chunkType
 		this.chunk = bedrockChunkType
 
 		this.block = loader(registry)
@@ -34,6 +35,6 @@ export class DataRegistries {
 
 export let latestRegistries = new DataRegistries("bedrock_1.19.60")
 
-export function get(version: string): DataRegistries {
+export function get(version) {
 	return new DataRegistries(version)
 }
