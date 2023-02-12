@@ -1,6 +1,6 @@
 {
 	"name": "data-registries",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "Simple Manager of Minecraft Data",
 	"main": "index.js",
 	"scripts": {
