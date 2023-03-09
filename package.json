@@ -20,7 +20,7 @@
 	},
 	"homepage": "https://github.com/SkyLake-git/data-registries#readme",
 	"dependencies": {
-		"minecraft-data": "^3.27.0",
+		"minecraft-data": "^3.30.0",
 		"prismarine-block": "^1.16.3",
 		"prismarine-chunk": "^1.33.0",
 		"prismarine-registry": "^1.7.0"
