@@ -22,7 +22,7 @@ var DataRegistries = /** @class */ (function () {
 	return DataRegistries;
 }());
 exports.DataRegistries = DataRegistries;
-exports.latestRegistries = new DataRegistries("bedrock_1.19.63");
+exports.latestRegistries = new DataRegistries("bedrock_1.19.62");
 function get(version) {
 	return new DataRegistries(version);
 }
